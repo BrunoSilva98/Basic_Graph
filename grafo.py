@@ -13,7 +13,6 @@ class Grafo:
     def addVertice(self, no):
         for i in self.vertices:
             if(i.vertice == no.vertice):
-                print("Vertice ja adicionado anteriormente")
                 return False
         self.vertices.append(no)
         return True
@@ -49,9 +48,9 @@ class Grafo:
 
         for i in range(adjacentes):
             print(adjacentes[i].vertice, end=", ")
-
-
-
+    
+    def calculaGrau(self, no):
+        return len(self.getAdjacentes(no))
 
 if __name__ == '__main__':
 
@@ -65,6 +64,9 @@ if __name__ == '__main__':
         print("4. Visualizar vertices adjacentes")
         print("5. Verificar existencia de aresta")
         print("6. Calcular grau de um vertice")
+        print("7. Visualizar vertices do grafo")
+        print("8. Sair")
+
         key = input()
         os.system('cls||clear')
         
@@ -77,6 +79,8 @@ if __name__ == '__main__':
             vertex = No(vertex)
             if(grafo.addVertice(vertex)):
                 print("Vertice adicionado")
+            else:
+                print("Vertice ja adicionado anteriormente")
             input()
 
         elif(key == '2'): #Insercao de arestas
@@ -100,7 +104,10 @@ if __name__ == '__main__':
             print("Insira o vertice do qual deseja visualizar os adjacentes: ", end="")
             vertex = input()
             vertex = grafo.getVertice(vertex)
-            grafo.mostrarAdjacentes(vertex)
+            if(vertex != None):
+                grafo.mostrarAdjacentes(vertex)
+            else:
+                print("Vertice nao pertencente ao grafo")
             input()
 
         elif(key == '5'): #Verificar existencia de aresta
@@ -119,6 +126,23 @@ if __name__ == '__main__':
                     print("Nao existem arestas entre os vertices {0} e {1}")
             else:
                 print("Um dos vertices inseridos nao pertencem ao grafo")
+            input()
+
+        elif(key == '6'): #Calcular grau de um vertice
+            print("Insira o vertice que deseja calcular o grau: ", end="")
+            vertex = input()
+            vertex = grafo.getVertice(vertex)
+            
+            if(vertex != None):
+                grau = grafo.calculaGrau(vertex)
+                print("\nGrau do vertice {0}: {1}".format(vertex.vertice, grau), end="")
+            else:
+                print("\n Vertice nao pertencente ao grafo!\n")
+            input()
+
+        elif(key == '8'):
+            break
+        
         os.system('cls||clear')
 
 

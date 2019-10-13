@@ -1,3 +1,5 @@
+import os
+
 class No:
     def __init__(self, vertice):
         self.vertice = vertice
@@ -13,7 +15,7 @@ class Grafo:
             if(i.vertice == no.vertice):
                 print("Vertice ja adicionado anteriormente")
                 return False
-        self.vertices.append(vertice)
+        self.vertices.append(no)
         return True
 
     def getVertice(self, no):
@@ -28,6 +30,15 @@ class Grafo:
                 i.adjacentes.append(noDest)
                 return True
         return False
+    
+    def verificaAresta(self, noOrig, noDest):
+        for i in self.vertices:
+            if (i.vertice == noOrig.vertice):
+                adjacentes = self.getAdjacentes(i)
+        for i in adjacentes:
+            if (i.vertice == noDest.vertice):
+                return True
+        return False 
     
     def getAdjacentes(self, no):
         return no.adjacentes
@@ -48,24 +59,27 @@ if __name__ == '__main__':
     grafo = Grafo()
 
     while(key != 1):
-        print("1. Sair")
-        print("2. Inserir Vertice")
-        print("3. Inserir Aresta")
-        print("4. Representacao matematica")
-        print("5. Visualizar vertices adjacentes")
-        print("6. Verificar existencia de aresta")
-        print("7. Calcular grau de um vertice")
+        print("1. Inserir Vertice")
+        print("2. Inserir Aresta")
+        print("3. Representacao matematica")
+        print("4. Visualizar vertices adjacentes")
+        print("5. Verificar existencia de aresta")
+        print("6. Calcular grau de um vertice")
         key = input()
-
-        if(key == 2):
-            print("Insira a identificacao do vertice")
-            vertice = input()
-            vertice = No(vertice)
-            if(grafo.addVertice(vertice)):
-                print("Vertice adicionado")
-                break
+        os.system('cls||clear')
         
-        elif(key == 3):
+        if(key == '1'):
+            break
+
+        if(key == '1'): #Insercao de vertices
+            print("Insira a identificacao do vertice")
+            vertex = input()
+            vertex = No(vertex)
+            if(grafo.addVertice(vertex)):
+                print("Vertice adicionado")
+            input()
+
+        elif(key == '2'): #Insercao de arestas
             print("Vertice 1: ",end="")
             vertex = input()
             vertex = grafo.getVertice(vertex)
@@ -78,18 +92,35 @@ if __name__ == '__main__':
                 #Por nao ser um grafo direcionado, a aresta deve estar nos dois vertices na lista
                 grafo.addAresta(vertex, vertex2)
                 grafo.addAresta(vertex2, vertex)
-                break
-            
-            print("Um dos vertices nao pertencem ao grafo!")
-            
+            else:
+                print("Um dos vertices nao pertencem ao grafo!")
+            input()
 
-        elif(key == 5):
+        elif(key == '4'): #Visualizacao dos adjacentes de determinado vertice
             print("Insira o vertice do qual deseja visualizar os adjacentes: ", end="")
-            no = input()
-            no = grafo.getVertice(no)
-            grafo.mostrarAdjacentes(no)
+            vertex = input()
+            vertex = grafo.getVertice(vertex)
+            grafo.mostrarAdjacentes(vertex)
+            input()
 
-        
+        elif(key == '5'): #Verificar existencia de aresta
+            print("Vertice 1: ", end="")
+            vertex = input()
+            print("Vertice 2: ", end="")
+            vertex2 = input()
+
+            vertex = grafo.getVertice(vertex)
+            vertex2 = grafo.getVertice(vertex2)
+
+            if(vertex != None and vertex2 != None):
+                if (grafo.verificaAresta(vertex, vertex2)):
+                    print("Aresta {0}{1} existente".format(vertex.vertice, vertex2.vertice))
+                else:
+                    print("Nao existem arestas entre os vertices {0} e {1}")
+            else:
+                print("Um dos vertices inseridos nao pertencem ao grafo")
+        os.system('cls||clear')
+
 
 
 

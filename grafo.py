@@ -52,12 +52,16 @@ class Grafo:
     def calculaGrau(self, no):
         return len(self.getAdjacentes(no))
 
+    def mostrarVertices(self):
+        for i in self.vertices:
+            print(i.vertice, end=", ")
+
 if __name__ == '__main__':
 
     key = 0
     grafo = Grafo()
 
-    while(key != 1):
+    while(key != '8'):
         print("1. Inserir Vertice")
         print("2. Inserir Aresta")
         print("3. Representacao matematica")
@@ -69,9 +73,6 @@ if __name__ == '__main__':
 
         key = input()
         os.system('cls||clear')
-        
-        if(key == '1'):
-            break
 
         if(key == '1'): #Insercao de vertices
             print("Insira a identificacao do vertice")
@@ -138,6 +139,10 @@ if __name__ == '__main__':
                 print("\nGrau do vertice {0}: {1}".format(vertex.vertice, grau), end="")
             else:
                 print("\n Vertice nao pertencente ao grafo!\n")
+            input()
+
+        elif(key == '7'):
+            grafo.mostrarVertices()
             input()
 
         elif(key == '8'):

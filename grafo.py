@@ -46,7 +46,7 @@ class Grafo:
         adjacentes = self.getAdjacentes(no)
         print("Vertices adjacentes ao no {0}".format(no.vertice))
 
-        for i in range(adjacentes):
+        for i in range(len(adjacentes)):
             print(adjacentes[i].vertice, end=", ")
     
     def calculaGrau(self, no):
@@ -54,7 +54,7 @@ class Grafo:
 
     def mostrarVertices(self):
         for i in self.vertices:
-            print(i.vertice, end=", ")
+            print(i.vertice, end=" ")
 
 if __name__ == '__main__':
 

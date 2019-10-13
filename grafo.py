@@ -181,15 +181,3 @@ if __name__ == '__main__':
             break
         
         os.system('cls||clear')
-
-
-
-
-
-
-
-
-
-
-
-

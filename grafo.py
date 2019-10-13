@@ -23,38 +23,66 @@ class Grafo:
                 return i
         return None
 
+    def mostrarVertices(self):
+        for i in self.vertices:
+            print(i.vertice, end=", ")
+
     def addAresta(self, noOrig, noDest):
         for i in self.vertices:
             if (i.vertice == noOrig.vertice):
                 i.adjacentes.append(noDest)
                 return True
         return False
+
+    def getArestas(self):
+        listaMostrados = list()
+        listaArestas = list()
+        for i in self.vertices:
+            adjacentes = self.getAdjacentes(i)
+
+            for j in adjacentes:
+                if j.vertice not in listaMostrados:
+                    listaArestas.append([i.vertice, j.vertice])            
+            listaMostrados.append(i.vertice)
+            
+        return listaArestas
     
     def verificaAresta(self, noOrig, noDest):
-        for i in self.vertices:
-            if (i.vertice == noOrig.vertice):
-                adjacentes = self.getAdjacentes(i)
+        adjacentes = self.getAdjacentes(noOrig)
         for i in adjacentes:
             if (i.vertice == noDest.vertice):
                 return True
         return False 
     
+    def mostrarArestas(self):
+        arestas = self.getArestas()
+        for i in arestas:
+            print("({0},{1}),".format(i[0], i[1]), end=" ")
+
     def getAdjacentes(self, no):
         return no.adjacentes
 
     def mostrarAdjacentes(self, no):
         adjacentes = self.getAdjacentes(no)
         print("Vertices adjacentes ao no {0}".format(no.vertice))
+        listaMostrados = list()
 
         for i in range(len(adjacentes)):
-            print(adjacentes[i].vertice, end=", ")
+            if(adjacentes[i].vertice not in listaMostrados):
+                print(adjacentes[i].vertice, end=", ")
+                listaMostrados.append(adjacentes[i].vertice)
     
     def calculaGrau(self, no):
         return len(self.getAdjacentes(no))
 
-    def mostrarVertices(self):
-        for i in self.vertices:
-            print(i.vertice, end=" ")
+    def RepresentacaoMatematica(self):
+        print("V(G) = {",end="")
+        self.mostrarVertices()
+        print("}")
+
+        print("E(G) = {", end="")
+        self.mostrarArestas()
+        print("}")
 
 if __name__ == '__main__':
 
@@ -95,10 +123,14 @@ if __name__ == '__main__':
 
             if(vertex != None and vertex2 != None): 
                 #Por nao ser um grafo direcionado, a aresta deve estar nos dois vertices na lista
-                grafo.addAresta(vertex, vertex2)
-                grafo.addAresta(vertex2, vertex)
+                if(grafo.addAresta(vertex, vertex2) and grafo.addAresta(vertex2, vertex)):
+                    print("Aresta adicionada!")
             else:
-                print("Um dos vertices nao pertencem ao grafo!")
+                    print("Um dos vertices nao pertencem ao grafo!")
+            input()
+
+        elif(key == '3'): #Representacao matematica
+            grafo.RepresentacaoMatematica()
             input()
 
         elif(key == '4'): #Visualizacao dos adjacentes de determinado vertice
@@ -124,7 +156,7 @@ if __name__ == '__main__':
                 if (grafo.verificaAresta(vertex, vertex2)):
                     print("Aresta {0}{1} existente".format(vertex.vertice, vertex2.vertice))
                 else:
-                    print("Nao existem arestas entre os vertices {0} e {1}")
+                    print("Nao existem arestas entre os vertices {0} e {1}".format(vertex.vertice, vertex2.vertice))
             else:
                 print("Um dos vertices inseridos nao pertencem ao grafo")
             input()

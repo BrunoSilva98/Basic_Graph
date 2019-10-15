@@ -24,8 +24,10 @@ class Grafo:
         return None
 
     def mostrarVertices(self):
-        for i in self.vertices:
-            print(i.vertice, end=", ")
+        for i in range(len(self.vertices)):
+            print(self.vertices[i].vertice, end="")
+            if(i+1 < len(self.vertices)):
+                print(",", end= " ")
 
     def addAresta(self, noOrig, noDest):
         for i in self.vertices:
@@ -54,8 +56,10 @@ class Grafo:
     def mostrarArestas(self):
         arestas = self.getArestas()
         
-        for i in arestas:
-            print("({0},{1}),".format(i[0], i[1]), end=" ")
+        for i in range(len(arestas)):
+            print("({0},{1})".format(arestas[i][0], arestas[i][1]), end="")
+            if (i+1 != len(arestas)):
+                print(",", end=" ")
 
     def getAdjacentes(self, no):
         return no.adjacentes

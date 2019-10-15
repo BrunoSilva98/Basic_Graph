@@ -35,15 +35,12 @@ class Grafo:
         return False
 
     def getArestas(self):
-        listaMostrados = list()
         listaArestas = list()
         for i in self.vertices:
             adjacentes = self.getAdjacentes(i)
 
             for j in adjacentes:
-                if j.vertice not in listaMostrados:
-                    listaArestas.append([i.vertice, j.vertice])            
-            listaMostrados.append(i.vertice)
+                listaArestas.append([i.vertice, j.vertice])            
             
         return listaArestas
     
@@ -56,6 +53,7 @@ class Grafo:
     
     def mostrarArestas(self):
         arestas = self.getArestas()
+        
         for i in arestas:
             print("({0},{1}),".format(i[0], i[1]), end=" ")
 

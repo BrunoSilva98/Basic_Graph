@@ -37,13 +37,15 @@ class Grafo:
         return False
 
     def getArestas(self):
+        listaMostrados = list()
         listaArestas = list()
         for i in self.vertices:
             adjacentes = self.getAdjacentes(i)
-
             for j in adjacentes:
-                listaArestas.append([i.vertice, j.vertice])            
-            
+               if j.vertice not in listaMostrados:
+                   listaArestas.append([i.vertice, j.vertice])
+                   if i.vertice not in listaMostrados:
+                       listaMostrados.append(i.vertice)
         return listaArestas
     
     def verificaAresta(self, noOrig, noDest):
@@ -84,7 +86,7 @@ class Grafo:
 
         print("E(G) = {", end="")
         self.mostrarArestas()
-        print("}")
+        print("} - Grafo não direcionado")
 
 if __name__ == '__main__':
 

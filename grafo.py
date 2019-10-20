@@ -100,7 +100,6 @@ if __name__ == '__main__':
         print("4. Visualizar vertices adjacentes")
         print("5. Verificar existencia de aresta")
         print("6. Calcular grau de um vertice")
-        print("7. Visualizar vertices do grafo")
         print("8. Sair")
 
         key = input()
@@ -178,10 +177,6 @@ if __name__ == '__main__':
             input()
 
         elif(key == '7'):
-            grafo.mostrarVertices()
-            input()
-
-        elif(key == '8'):
             break
         
         os.system('cls||clear')

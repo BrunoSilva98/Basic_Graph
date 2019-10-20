@@ -41,9 +41,9 @@ class Grafo:
         for i in adjacentes:
             if i.vertice == vertice.vertice:
                 contador += 1
-        if contador != 0:
-            return contador/2
-        return contador
+
+        return contador/2
+
 
     def getArestas(self):
         listaMostrados = list()

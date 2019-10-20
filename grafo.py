@@ -100,7 +100,7 @@ if __name__ == '__main__':
         print("4. Visualizar vertices adjacentes")
         print("5. Verificar existencia de aresta")
         print("6. Calcular grau de um vertice")
-        print("8. Sair")
+        print("7. Sair")
 
         key = input()
         os.system('cls||clear')

@@ -66,16 +66,24 @@ class Grafo:
     def getAdjacentes(self, no):
         return no.adjacentes
 
-    def mostrarAdjacentes(self, no):
+    def getUniqueAdjacentes(self, no):
         adjacentes = self.getAdjacentes(no)
-        print("Vertices adjacentes ao no {0}".format(no.vertice))
         listaMostrados = list()
+        listaUnicos = list()
 
         for i in range(len(adjacentes)):
             if(adjacentes[i].vertice not in listaMostrados):
-                print(adjacentes[i].vertice, end=", ")
                 listaMostrados.append(adjacentes[i].vertice)
-    
+                listaUnicos.append(adjacentes[i].vertice)
+        return listaUnicos
+
+    def mostrarAdjacentes(self, no):
+        listaAdjacentes = self.getUniqueAdjacentes(no)
+        for i in range(len(listaAdjacentes)):
+            print("{0}".format(listaAdjacentes[i]), end="")
+            if(i+1 != len(listaAdjacentes)):
+                print(", ", end="")
+        
     def calculaGrau(self, no):
         return len(self.getAdjacentes(no))
 

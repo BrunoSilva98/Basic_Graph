@@ -36,16 +36,33 @@ class Grafo:
                 return True
         return False
 
+    def contaLoops(self, vertice,adjacentes): #Criado para corrigir o print dos loops
+        contador = 0
+        for i in adjacentes:
+            if i.vertice == vertice.vertice:
+                contador += 1
+        if contador != 0:
+            return contador/2
+        return contador
+
     def getArestas(self):
         listaMostrados = list()
         listaArestas = list()
+        
         for i in self.vertices:
+            loops = 0
             adjacentes = self.getAdjacentes(i)
+            contador = self.contaLoops(i, adjacentes)
+            
+            while loops < contador:
+                listaArestas.append([i.vertice, i.vertice])
+                loops += 1
+            listaMostrados.append(i.vertice)
+
             for j in adjacentes:
                if j.vertice not in listaMostrados:
                    listaArestas.append([i.vertice, j.vertice])
-                   if i.vertice not in listaMostrados:
-                       listaMostrados.append(i.vertice)
+
         return listaArestas
     
     def verificaAresta(self, noOrig, noDest):

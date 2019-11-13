@@ -38,12 +38,21 @@ if __name__ == '__main__':
             vertex2 = input()
             vertex2 = grafo.getVertice(vertex2)
 
-            if(vertex != None and vertex2 != None): 
-                #Por nao ser um grafo direcionado, a aresta deve estar nos dois vertices na lista
-                if(grafo.addAresta(vertex, vertex2) and grafo.addAresta(vertex2, vertex)):
-                    print("Aresta adicionada!")
-            else:
-                    print("Um dos vertices nao pertencem ao grafo!")
+            print("\nPeso da aresta: ", end="")
+            try:
+                peso = float(input())
+                vertex.peso = peso
+                vertex2.peso = peso
+
+                if(vertex != None and vertex2 != None): 
+                    #Por nao ser um grafo direcionado, a aresta deve estar nos dois vertices na lista
+                    if(grafo.addAresta(vertex, vertex2.copy()) and grafo.addAresta(vertex2, vertex.copy())):
+                        print("Aresta adicionada!")
+                    else:
+                        print("Um dos vertices nao pertencem ao grafo!")
+            except ValueError:
+                print("Peso invalido!\n")
+            
             input()
 
         elif(key == '3'): #Representacao matematica

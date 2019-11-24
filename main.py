@@ -15,7 +15,7 @@ if __name__ == '__main__':
         print("4. Visualizar vertices adjacentes")
         print("5. Verificar existencia de aresta")
         print("6. Calcular grau de um vertice")
-        print("7. Aplicar algoritmo de Prim para gerar Arvore minima", end="")
+        print("7. Aplicar algoritmo de Prim para gerar Arvore minima")
         print("9. Sair")
 
         key = input()

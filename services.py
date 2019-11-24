@@ -1,5 +1,4 @@
 import grafo
-import no
 
 def arvore_geradora_minima_prim(graph):
     arv_minima = grafo.Grafo()
@@ -14,7 +13,7 @@ def arvore_geradora_minima_prim(graph):
     while not verifica_arv_minima(graph, arv_minima):
         aresta = seleciona_menor_aresta(corte)   
         peso = aresta[1].peso 
-        corte.addVertice(aresta[1].copy())  #Adicionado no corte o vertice onde estava a aresta minima
+        corte.addVertice(graph.getVertice(aresta[1].vertice).copy())  #Adicionado no corte o vertice onde estava a aresta minima
         
         aresta[0].adjacentes.clear()
         aresta[1].adjacentes.clear()
@@ -37,8 +36,9 @@ def seleciona_menor_aresta(graph):
             if (graph.getVertice(aresta.vertice) == None):
                 if (aresta.peso < menor_peso):
                     vertex = vertice.copy()
-                    menor_peso = aresta.copy()
-    return [vertex, menor_peso]
+                    menor_peso = aresta.peso
+                    edge = aresta.copy()
+    return [vertex, edge]
 
 def verifica_arv_minima(graph, arv):
     lista_vertices_grafo = get_all_vertices(graph)

@@ -15,6 +15,8 @@ class Dijsktra:
 
             if (vertice.vertice == self.origem.vertice):
                 vertice.distancia_acumulada = 0
+
+            self.lista_distancia_acumulada.append(vertice)
     
     def get_menor_vertice(self):
         menor_dist = float('inf')
@@ -40,3 +42,32 @@ class Dijsktra:
                 if(distancia_acumulada < adjacente.distancia_acumulada):
                     self.atualiza_lista(vertex, adjacente, distancia_acumulada)
             vertex.expandido = True
+
+    def preenche_lista_menor_caminho(self):
+        caminho = None
+        for vertex in self.lista_distancia_acumulada:
+            if(vertex.vertice == self.destino.vertice):
+                caminho = vertex
+                break
+
+        while caminho.vertice != self.origem.vertice:
+            self.menor_caminho.insert(0, caminho)
+            caminho = caminho.anterior
+
+        self.menor_caminho.insert(0, caminho)
+
+    def printa_menor_caminho(self):
+        contador = 0
+        print("O menor caminho entre os dois vertices é:\n\n")
+
+        while(contador < len(self.menor_caminho)):
+            caminho = self.menor_caminho[contador]
+            if(caminho.vertice != self.destino.vertice):
+                proximo = self.menor_caminho[contador+1]
+
+                for vertex in caminho.adjacentes:
+                    if (vertex.vertice == proximo.vertice and vertex.peso == proximo.peso):
+                        proximo = vertex
+                        break
+                print("({0},{1}, peso {2})".format(caminho.vertice, proximo.vertice, proximo.peso))
+            

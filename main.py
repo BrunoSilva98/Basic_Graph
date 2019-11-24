@@ -2,6 +2,7 @@ from grafo import Grafo
 from no import No
 import os
 import services
+import dijkstra
 
 if __name__ == '__main__':
 
@@ -16,6 +17,7 @@ if __name__ == '__main__':
         print("5. Verificar existencia de aresta")
         print("6. Calcular grau de um vertice")
         print("7. Aplicar algoritmo de Prim para gerar Arvore minima")
+        print("8. Aplicar algoritmo de Dijsktra")
         print("9. Sair")
 
         key = input()
@@ -114,7 +116,21 @@ if __name__ == '__main__':
             else:
                 print("\nResposta invalida! Escolha novamente.")
             input()
-            
+        
+        elif(key == '8'):
+            print("Insira o vertice de origem:")
+            origem = input()
+            print("Insira o vertice de destino:")
+            destino = input()
+
+            vertex1 = grafo.getVertice(vertex1)
+            vertex2 = grafo.getVertice(vertex2)
+
+            menor_caminho = dijkstra.Dijsktra(grafo, origem, destino)
+            menor_caminho.dijsktra_algorithm()
+            menor_caminho.printa_menor_caminho()        
+            input()
+
         elif(key == '9'):
             break
         

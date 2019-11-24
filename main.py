@@ -15,9 +15,7 @@ if __name__ == '__main__':
         print("4. Visualizar vertices adjacentes")
         print("5. Verificar existencia de aresta")
         print("6. Calcular grau de um vertice")
-        print("7. Aplicar algoritmo de Prim para gerar Arvore minima", end=" ")
-        print("Obs: Nao modificara o grafo original, somente mostrará " + 
-                "a representacao matematica da arvore")
+        print("7. Aplicar algoritmo de Prim para gerar Arvore minima", end="")
         print("9. Sair")
 
         key = input()
@@ -105,8 +103,16 @@ if __name__ == '__main__':
             input()
 
         elif(key == '7'): #Prim
-            arv_minima = services.arvore_geradora_minima_prim(grafo)
-            arv_minima.RepresentacaoMatematica()
+            print("Deseja substituir o grafo original pela arvore minima? (S/N)")
+            resp = str.upper(input())
+            if resp == 'S':
+                grafo = services.arvore_geradora_minima_prim(grafo)
+                grafo.RepresentacaoMatematica()
+            elif resp == 'N':
+                arv_minima = services.arvore_geradora_minima_prim(grafo)
+                arv_minima.RepresentacaoMatematica()
+            else:
+                print("\nResposta invalida! Escolha novamente.")
             input()
             
         elif(key == '9'):

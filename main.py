@@ -8,14 +8,17 @@ if __name__ == '__main__':
     key = 0
     grafo = Grafo()
 
-    while(key != '8'):
+    while(key != '9'):
         print("1. Inserir Vertice")
         print("2. Inserir Aresta")
         print("3. Representacao matematica")
         print("4. Visualizar vertices adjacentes")
         print("5. Verificar existencia de aresta")
         print("6. Calcular grau de um vertice")
-        print("7. Sair")
+        print("7. Aplicar algoritmo de Prim para gerar Arvore minima", end=" ")
+        print("Obs: Nao modificara o grafo original, somente mostrará " + 
+                "a representacao matematica da arvore")
+        print("9. Sair")
 
         key = input()
         os.system('cls||clear')
@@ -101,7 +104,12 @@ if __name__ == '__main__':
                 print("\n Vertice nao pertencente ao grafo!\n")
             input()
 
-        elif(key == '7'):
+        elif(key == '7'): #Prim
+            arv_minima = services.arvore_geradora_minima_prim(grafo)
+            arv_minima.RepresentacaoMatematica()
+            input()
+            
+        elif(key == '9'):
             break
         
         os.system('cls||clear')

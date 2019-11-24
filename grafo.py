@@ -48,13 +48,13 @@ class Grafo:
             contador = self.contaLoops(i, adjacentes)
             
             while loops < contador:
-                listaArestas.append([i.vertice, i.vertice])
+                listaArestas.append([i, i])
                 loops += 1
             listaMostrados.append(i.vertice)
 
             for j in adjacentes:
                if j.vertice not in listaMostrados:
-                   listaArestas.append([i.vertice, j.vertice])
+                   listaArestas.append([i, j])
 
         return listaArestas
     
@@ -69,7 +69,8 @@ class Grafo:
         arestas = self.getArestas()
         
         for i in range(len(arestas)):
-            print("({0},{1})".format(arestas[i][0], arestas[i][1]), end="")
+            print("({0},{1}, peso {2})".format(arestas[i][0].vertice, \
+                                                arestas[i][1].vertice, arestas[i][1].peso), end="")
             if (i+1 != len(arestas)):
                 print(",", end=" ")
 

@@ -1,8 +1,12 @@
 from no import No
+import copy
 class Grafo:
     def __init__(self):
         self.vertices = list()
-
+    
+    def copy(self):
+        return copy.deepcopy(self)
+        
     def addVertice(self, no):
         for i in self.vertices:
             if(i.vertice == no.vertice):

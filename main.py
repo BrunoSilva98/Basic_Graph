@@ -123,12 +123,17 @@ if __name__ == '__main__':
             print("Insira o vertice de destino:")
             destino = input()
 
-            vertex1 = grafo.getVertice(vertex1)
-            vertex2 = grafo.getVertice(vertex2)
+            origem = grafo.getVertice(origem)
+            destino = grafo.getVertice(destino)
 
-            menor_caminho = dijkstra.Dijsktra(grafo, origem, destino)
-            menor_caminho.dijsktra_algorithm()
-            menor_caminho.printa_menor_caminho()        
+            if(origem == None or destino == None):
+                print("Um dos vertices inseridos nao pertencem ao grafo")
+            else:
+                menor_caminho = dijkstra.Dijsktra(grafo, origem, destino)
+                if(menor_caminho.dijsktra_algorithm()):
+                    menor_caminho.printa_menor_caminho()
+                else:
+                    print("Nao existe caminho entre os dois vertices!")
             input()
 
         elif(key == '9'):

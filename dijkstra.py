@@ -104,5 +104,3 @@ class Dijsktra:
                 proximo = self.get_menor_vertice_adjacente(caminho, proximo)
                 print("({0},{1}, peso {2})".format(caminho.vertice, proximo.vertice, proximo.peso))
             contador += 1
-
-    
